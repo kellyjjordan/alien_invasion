@@ -17,16 +17,22 @@ class AlienInvasion:
         #changing the background colour
         self.bg_color = (self.settings.bg_color) #light grey color
     def run_game(self):
+            
             #start main loop for the game
+            
             while True:
                 #watches for keyboard and mouse venets
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        sys.exit()
-
-                self.screen.fill(self.bg_color)
-                self.ship.blitme()
-                pygame.display.flip() #continously updates the game for each event
+                self._check_events()
+                self._update_screen()
+    def _check_events(self):
+        for event in pygame.event.get():
+            if event.type ==pygame.QUIT:
+                sys.exit()
+    def _update_screen(self):
+        #update the images on the screen, flip to new screen
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+        pygame.display.flip()
 
 if __name__ == '__main__':
     ai = AlienInvasion()
