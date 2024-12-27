@@ -2,16 +2,17 @@ import sys
 
 import pygame
 
+from setting import Settings
 class AlienInvasion:
     #class to maange game assests and behaviour
     def __init__(self):
         pygame.init()
-
-        self.screen = pygame.display.set_mode((1200, 800)) #size of window screen
+        self.settings = Settings()
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height)) #size of window screen
         pygame.display.set_caption("Alien Invasion")
-
+        
         #changing the background colour
-        self.bg_color = (230, 230,230) #light grey color
+        self.bg_color = (self.settings.bg_color) #light grey color
 
     def run_game(self):
             #start main loop for the game
