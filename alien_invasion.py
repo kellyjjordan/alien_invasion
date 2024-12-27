@@ -3,6 +3,8 @@ import sys
 import pygame
 
 from setting import Settings
+from ship import Ship
+
 class AlienInvasion:
     #class to maange game assests and behaviour
     def __init__(self):
@@ -11,9 +13,9 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height)) #size of window screen
         pygame.display.set_caption("Alien Invasion")
         
+        self.ship = Ship(self)
         #changing the background colour
         self.bg_color = (self.settings.bg_color) #light grey color
-
     def run_game(self):
             #start main loop for the game
             while True:
@@ -23,6 +25,7 @@ class AlienInvasion:
                         sys.exit()
 
                 self.screen.fill(self.bg_color)
+                self.ship.blitme()
                 pygame.display.flip() #continously updates the game for each event
 
 if __name__ == '__main__':
