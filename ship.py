@@ -13,6 +13,15 @@ class Ship:
 
         #start ship at the bottom center 
         self.rect.midbottom = self.screen_rect.midbottom 
+    #flag for continous movement 
+        self.move_right = False
+        self.move_left = False
+
+    def update(self):
+        if self.move_right:
+            self.rect.x+= 1
+        if self.move_left:
+            self.rect.x -=1 # - since its going to the negative x value plane 
 
     def blitme(self):
         self.screen.blit(self.image, self.rect)

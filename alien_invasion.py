@@ -13,9 +13,15 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height)) #size of window screen
         pygame.display.set_caption("Alien Invasion")
         
+        
         self.ship = Ship(self)
+
+        
+
+
         #changing the background colour
         self.bg_color = (self.settings.bg_color) #light grey color
+
     def run_game(self):
             
             #start main loop for the game
@@ -23,11 +29,30 @@ class AlienInvasion:
             while True:
                 #watches for keyboard and mouse venets
                 self._check_events()
+                self.ship.update()
                 self._update_screen()
+
+    
     def _check_events(self):
         for event in pygame.event.get():
             if event.type ==pygame.QUIT:
                 sys.exit()
+
+
+                
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    self.ship.move_right = True
+                elif event.key == pygame.K_LEFT:
+                    self.ship.move_left = True
+
+
+            elif event.type == pygame.KEYUP: #keyup indicates releasing the right arrow key
+                if event.key == pygame.K_RIGHT:
+                    self.ship.move_right = False
+                elif event.key == pygame.K_LEFT:
+                    self.ship.move_left = False
+
     def _update_screen(self):
         #update the images on the screen, flip to new screen
         self.screen.fill(self.settings.bg_color)
