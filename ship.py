@@ -23,10 +23,11 @@ class Ship:
         self.move_left = False
 
     def update(self):
-        if self.move_right:
+        if self.move_right and self.rect.right < self.screen_rect.right:
             self.rect.x+= self.settings.ship_speed
-        if self.move_left:
+        if self.move_left and self.rect.left > 0:
             self.rect.x -= self.settings.ship_speed # - since its going to the negative x value plane 
-
+        #checking if the ship is about to go off the screen = stopping it 
+        #update rect object from self.x 
     def blitme(self):
         self.screen.blit(self.image, self.rect)
