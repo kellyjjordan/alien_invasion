@@ -9,7 +9,7 @@ class Bullet(Sprite):
 
         self.screen = ai_game.screen
         self.settings = ai_game.settings 
-        self.colour = self.settings.bullet_colour
+        self.color = self.settings.bullet_color
 
         #creating a buillet rect at 0,0 and then set correct pos 
         self.rect = pygame.Rect(0,0, self.settings.bullet_width, self.settings.bullet_height)
@@ -25,4 +25,4 @@ class Bullet(Sprite):
         self.rect.y = self.y #updating the rect position
 
     def draw_bullet(self):
-        pygame.draw.rect(self.screen,self.colour,self.rect)
+        pygame.draw.rect(self.screen,self.color,self.rect)
