@@ -20,9 +20,10 @@ class AlienInvasion:
         #grouping bullets that have been fired in the screen
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
-
-        self._create_fleet()        
         self.ship = Ship(self)
+        self._create_fleet()        
+
+        
 
         
 
