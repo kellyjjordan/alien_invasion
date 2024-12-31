@@ -40,7 +40,7 @@ class AlienInvasion:
                 self._check_events()
                 self.ship.update()
                 self._update_bullets()
-                
+                self._update_aliens()
                 self._update_screen()
 
     
@@ -112,7 +112,9 @@ class AlienInvasion:
         alien.rect.x = alien.x
         alien.rect.y = alien_height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
-
+    def _update_aliens(self):
+        self.aliens.update()
+        
     def _update_screen(self):
         #update the images on the screen, flip to new screen
         self.screen.fill(self.settings.bg_color)
