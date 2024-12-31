@@ -35,11 +35,8 @@ class AlienInvasion:
                 #watches for keyboard and mouse venets
                 self._check_events()
                 self.ship.update()
-                self.bullets.update() 
-#getting rid of bullets that have left the screen
-                for bullet in self.bullets.copy():
-                    if bullet.rect.bottom <=0:
-                        self.bullets.remove(bullet)
+                self._update_bullets()
+                
                 self._update_screen()
 
     
@@ -76,8 +73,16 @@ class AlienInvasion:
     #function to fire bullet
     def _fire_bullet(self):
         #create a new bullet and add it to bullet group
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
+        if len(self.bullets) < self.settings.bullet_allowed: #only creates a new bullet sprite of the length of bullets is less than allowed amount (3)
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
+
+    def _update_bullets(self):
+        #update the position of bullets + deleting old bullets
+        self.bullets.update() 
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <=0:
+                self.bullets.remove(bullet)
     def _update_screen(self):
         #update the images on the screen, flip to new screen
         self.screen.fill(self.settings.bg_color)
