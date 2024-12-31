@@ -35,8 +35,12 @@ class AlienInvasion:
                 #watches for keyboard and mouse venets
                 self._check_events()
                 self.ship.update()
-                self._update_screen()
                 self.bullets.update() 
+#getting rid of bullets that have left the screen
+                for bullet in self.bullets.copy():
+                    if bullet.rect.bottom <=0:
+                        self.bullets.remove(bullet)
+                self._update_screen()
 
     
     def _check_events(self):
