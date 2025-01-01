@@ -21,7 +21,10 @@ class Ship:
     #flag for continous movement 
         self.move_right = False
         self.move_left = False
-
+    def center_ship(self):
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)
+        
     def update(self):
         if self.move_right and self.rect.right < self.screen_rect.right:
             self.rect.x+= self.settings.ship_speed
