@@ -7,6 +7,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 from game_stats import GameStats
+from button import Button
 class AlienInvasion:
     #class to maange game assests and behaviour
     def __init__(self):
@@ -24,6 +25,9 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
         self.ship = Ship(self)
         self._create_fleet()        
+
+        #created play button
+        self.play_button = Button(self, "play")
 
         
 
@@ -52,6 +56,9 @@ class AlienInvasion:
         for event in pygame.event.get():
             if event.type ==pygame.QUIT:
                 sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos() #retrives pos of cursor for clicking on play button
+                self._check_play_button(mouse_pos)
 
 
                 
@@ -61,6 +68,12 @@ class AlienInvasion:
             elif event.type == pygame.KEYUP: #keyup indicates releasing the right arrow key
                 self._check_keyup_events(event)
     #event checks for keydown events 
+
+    def _check_play_button(self,mouse_pos):
+        #starts the game when play button is clicked
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.stats.game_active = True
+
     def _check_keydown_events(self,event):
         #responds to keypresses
         if event.key == pygame.K_RIGHT:
@@ -177,6 +190,10 @@ class AlienInvasion:
             bullet.draw_bullet()
         
         self.aliens.draw(self.screen)
+
+        #draw play button if game is inactive
+        if not self.stats.game_active:
+            self.play_button.draw_button()
         pygame.display.flip()
 if __name__ == '__main__':
     ai = AlienInvasion()
